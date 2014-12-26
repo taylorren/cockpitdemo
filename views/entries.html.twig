@@ -1,0 +1,45 @@
+{% extends '_template.html.twig' %}
+
+{% block title %}
+    <title>Collection Page: {{collection}} </title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h2>Trip</h2>
+            <p>Total {{entries|length}} entries in this collection and are displayed below.</p>
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <table class='table table-striped table-hover'>
+                    {% for entry in entries %}
+                        <tr>
+                            <td>
+                                <div class='col-md-12'>
+                                    <h3>{{entry.name}}</h3> 
+                                    <p>{{entry.date|date('Y-m-d')}}</p>
+                                    <p>Location: {{entry.location}}</p>
+                                    <p>Notes:</p>
+                                    <p>{{entry.diary|raw}}</p>
+                                    <hr>
+                                    <h3>Picture gallery: {{entry.pic}}</h3>
+                                    <p>{{render(url('gallery', {gal: entry.pic}))}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- /container -->
+
+{% endblock %}

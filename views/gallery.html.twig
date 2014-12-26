@@ -1,0 +1,44 @@
+{% extends '_template.html.twig' %}
+
+{% block title %}
+    <title>Gallery Page: {{gal}} </title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h2>Picture Gallery: {{gal}}</h2>
+
+
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <table class='table table-striped table-hover'>
+                        {% for img in images %}
+                            {% if loop.index % 3 ==1 %}
+                                <tr>
+                                {% endif %}
+                                <td>
+                                    <h4>{{img.data.caption}}</h4> 
+                                    <a href="{{img.url}}" title="{{img.data.caption}}"><img src="{{img.cache}}"  alt="{{img.data.caption}}"/></a>
+
+                                </td>
+                                {% if loop.index % 3 ==0 %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- /container -->
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends '_template.html.twig' %}
+
+{% block content %}
+    <div class="container">
+
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h2>Welcome to Cockpit CMS Demo</h2>
+            <p>This example site builds upon <a href="http://getcockpit.com">Cockpit CMS</a> backend and API.</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="http://{{app.request.host}}/cockpit" role="button">Backend Admin &raquo;</a>
+            </p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Collections</h2>
+                    <p>There are total <strong>{{collections|length}}</strong> collection(s) in the CMS:</p>
+                    <ul>
+                        {% for col in collections|keys %}
+                            <li>
+                                <a href="{{ url('collection', {col: col})}}">{{col}}</a>
+                            </li>
+                            {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>Galleries</h2>
+                    <p>There are total <strong>{{galleries|length}}</strong> galleries in the CMS:</p>
+                    <ul>
+                        {% for gal in galleries %}
+                            <li>
+                                <a href="{{ url('gallery', {gal: gal.name})}}">{{gal.name}}</a> (created: {{gal.created|date('Y-m-d H:i')}}, {{gal.images|length}} pictures)
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- /container -->
+
+{% endblock %}
